@@ -126,8 +126,9 @@ class Manager(UBXManager):
     def waitUntilDone(self, timeout=None):
         sleepTime = 0
         while not self.done():
-            sleep(0.5)
-            sleepTime += 0.5
+            interval = 0.5
+            sleep(interval)
+            sleepTime += interval
             if timeout is not None and sleepTime > timeout:
                 return False
         return True
