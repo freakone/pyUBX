@@ -34,7 +34,7 @@ sudo chmod 666 /dev/ttyACM0
 stty -F /dev/ttyACM0 -echo
 ~~~
 
-Now we can read and write to the device.
+Now we can read and write to the device. Of note, the `stty` command isn't needed for this package, just to view directly in the terminal.
 
 ### Show Me Coordinates
 
