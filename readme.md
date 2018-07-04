@@ -1,3 +1,50 @@
+# pyUBX - simpler docs
+
+These documents are easier to get started for not-smart people like me. The initial documentation is below.
+
+### Installation
+
+You can install this with pip!
+
+~~~
+pip install git+https://github.com/williamflynt/pyUBX.git
+~~~
+
+### Requirements
+
+I don't have any great requirements, because I only tested this for my use case. I used: 
+
+- Python 3.6
+- USB receiver by DIYMall using U-blox 7 (Amazon, $15)
+
+### Device Setup
+
+On my device, I can print the GPS module's output directly. It creates a device called `ttyACM0`.
+
+~~~
+sudo cat /dev/ttyACM0
+~~~
+
+That give me lots of junk messages. I just want satellites and coordinates. I also don't want to have to run scripts
+as superuser. So we will stop it from printing junk and make it accessible to non-superusers. There is probably a good
+reason not to do this, but I'm doing it.
+
+~~~
+sudo chmod 666 /dev/ttyACM0
+stty -F /dev/ttyACM0 -echo
+~~~
+
+Now we can read and write to the device.
+
+### Show Me Coordinates
+
+1. Do the steps above. If you don't know your device name (`/dev/ttyXYZ0`), find it somehow and put it on line 216 of `UBX.py`.
+Alternatively, you can call the next command with the `port` argument.
+2. Open a terminal to project root. `python UBX.py --NMEA | grep GPGLL` or `python UBX.py --port /dev/ttyACA0 --NMEA` 
+to see all messages from your device. Note that I included a device location with the `--port` argument.
+
+---
+
 # pyUBX
 
 This is a small but functional Python3 wrapper for the u-blox M8 UBX protocol, as
