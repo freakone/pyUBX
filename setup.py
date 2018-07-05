@@ -17,7 +17,7 @@ setup(
     author_email="william@williamflynt.com",
     url="https://github.com/williamflynt/pyUblox",
     keywords=["uBlox", "ublox", "ubx", "pyubx", "pyublox"],
-    packages=['.'],
+    packages=['.', 'UBX'],
     include_package_data=True,
     long_description=""" """
 )
